@@ -1,6 +1,6 @@
 # Prompt Generator Web Application
 
-The **Prompt Generator Application** is a Python-based GUI tool built with streamlit that allows users to generate prompts based on predefined templates and suggest new prompts for review.
+The **Prompt Generator Application** is a Python-based GUI tool built with **streamlit** that allows users to generate prompts based on predefined templates and suggest new prompts for review.
 ## Features
 
 - **Generate Prompt**
