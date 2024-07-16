@@ -1,7 +1,6 @@
-# Prompt Generator Application
+# Prompt Generator Web Application
 
-The **Prompt Generator Application** is a Python-based GUI tool built with Tkinter that allows users to generate prompts based on predefined templates and suggest new prompts for review. It also includes a management script (`prompt_management.py`) for approving or rejecting submitted prompts via a graphical interface.
-
+The **Prompt Generator Application** is a Python-based GUI tool built with streamlit that allows users to generate prompts based on predefined templates and suggest new prompts for review.
 ## Features
 
 - **Generate Prompt**
