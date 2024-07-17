@@ -45,7 +45,7 @@ def insert_submitted_prompt(title, content):
 # Upload the updated database file to GitHub
 def upload_to_github():
     github_repo = "NguyenHuy190303/Prompt-Generator-Web"
-    github_token = "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"
+    github_token = "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"
     file_path = "prompts.db"
     branch = "main"
     github_api_url = f"https://api.github.com/repos/{github_repo}/contents/{file_path}"
