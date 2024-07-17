@@ -1,6 +1,8 @@
 import streamlit as st
 import sqlite3
 import re
+import requests
+import base64
 
 # Initialize Database
 def init_db():
@@ -40,6 +42,44 @@ def insert_submitted_prompt(title, content):
     conn.commit()
     conn.close()
 
+# Upload the updated database file to GitHub
+def upload_to_github():
+    github_repo = "NguyenHuy190303/Prompt-Generator-Web"
+    github_token = "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"
+    file_path = "prompts.db"
+    branch = "main"
+    github_api_url = f"https://api.github.com/repos/{github_repo}/contents/{file_path}"
+
+    # Read the contents of the file
+    with open(file_path, "rb") as f:
+        content = f.read()
+    
+    # Get the current file's SHA
+    response = requests.get(github_api_url, headers={
+        "Authorization": f"token {github_token}"
+    })
+    response_json = response.json()
+    sha = response_json['sha'] if 'sha' in response_json else None
+
+    # Create the payload
+    payload = {
+        "message": "Update prompts.db",
+        "content": base64.b64encode(content).decode("utf-8"),
+        "branch": branch
+    }
+    if sha:
+        payload["sha"] = sha
+
+    # Upload the file
+    response = requests.put(github_api_url, headers={
+        "Authorization": f"token {github_token}"
+    }, json=payload)
+    
+    if response.status_code == 200 or response.status_code == 201:
+        st.success("Database updated on GitHub successfully!")
+    else:
+        st.error("Failed to update the database on GitHub.")
+
 # Main Application
 def main():
     st.sidebar.image("logo.jpg", use_column_width=True)
@@ -77,6 +117,7 @@ def main():
             if title and content:
                 insert_submitted_prompt(title, content)
                 st.success("Prompt của bạn sẽ được cân nhắc kĩ lưỡng trước khi có trong hệ thống, Leo cảm ơn sự đóng góp của bạn.")
+                upload_to_github()
             else:
                 st.warning("Vui lòng điền đầy đủ thông tin.")
 
