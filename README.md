@@ -33,5 +33,11 @@ The **Prompt Generator Application** is a Python-based GUI tool built with **str
 
    ```bash
    git clone https://github.com/NguyenHuy190303/Prompt-Generator-Web
+1. Move to project folder:
+
+   ```bash
    cd Prompt-Generator-Web
+3. Run app:
+
+   ```bash
    streamlit run GenPrompt.py
